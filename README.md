@@ -47,9 +47,9 @@
 
 ## 📥 Installation
 
-` ` `bash
+```bash
 composer require aminarjmand/pure-captcha
-` ` `
+```
 
 ## 🚀 Quick Start
 
@@ -57,17 +57,17 @@ composer require aminarjmand/pure-captcha
 
 Create a file called `captcha_image.php`:
 
-` ` `php
+```php
 <?php
 require 'vendor/autoload.php';
 use AminArjmand\PureCaptcha\Captcha;
 
 Captcha::renderImage();
-` ` `
+```
 
 ### Step 2: Add CAPTCHA to your form
 
-` ` `php
+```php
 <?php
 require 'vendor/autoload.php';
 use AminArjmand\PureCaptcha\Captcha;
@@ -92,13 +92,13 @@ use AminArjmand\PureCaptcha\Captcha;
     </form>
 </body>
 </html>
-` ` `
+```
 
 ### Step 3: Validate the CAPTCHA
 
 Create `submit.php`:
 
-` ` `php
+```php
 <?php
 require 'vendor/autoload.php';
 use AminArjmand\PureCaptcha\Captcha;
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo '❌ Invalid CAPTCHA. Please try again.';
     }
 }
-` ` `
+```
 
 ## ⚙️ Configuration
 
@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 Create `captcha_config.php` in your project root:
 
-` ` `php
+```php
 <?php
 return [
     'lang'           => 'en',
@@ -135,18 +135,18 @@ return [
     'case_sensitive' => false,
     'noise_level'    => 'medium',
 ];
-` ` `
+```
 
 ### Method 2: Runtime Configuration
 
-` ` `php
+```php
 Captcha::configure([
     'noise_level' => 'extreme',
     'length'      => 6,
     'lang'        => 'en',
     'char_type'   => 'letters',
 ]);
-` ` `
+```
 
 > ⚠️ **Note:** When using `configure()`, you must call it in **both** your form file and `captcha_image.php`, because each HTTP request is independent.
 
@@ -200,51 +200,51 @@ Captcha::configure([
 
 Set configuration options at runtime.
 
-` ` `php
+```php
 Captcha::configure(['length' => 6, 'noise_level' => 'high']);
-` ` `
+```
 
 ### `Captcha::get(string $key, mixed $default = null): mixed`
 
 Read a configuration value.
 
-` ` `php
+```php
 $lang = Captcha::get('lang'); // 'fa'
-` ` `
+```
 
 ### `Captcha::generate(): string`
 
 Generate a new CAPTCHA code and store it in the session. Returns the generated code.
 
-` ` `php
+```php
 $code = Captcha::generate();
-` ` `
+```
 
 ### `Captcha::validate(string $input): bool`
 
 Validate user input against the stored CAPTCHA code. Returns `true` if valid. The stored code is destroyed after validation (one-time use).
 
-` ` `php
+```php
 if (Captcha::validate($_POST['captcha'])) {
     // Valid!
 }
-` ` `
+```
 
 ### `Captcha::renderImage(): void`
 
 Generate and output a CAPTCHA PNG image. Sends headers and exits.
 
-` ` `php
+```php
 Captcha::renderImage();
-` ` `
+```
 
 ### `Captcha::html(string $imageUrl, string $inputName, ?string $lang): string`
 
 Generate the HTML markup for the CAPTCHA widget.
 
-` ` `php
+```php
 echo Captcha::html('captcha_image.php', 'captcha', 'en');
-` ` `
+```
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
@@ -256,22 +256,22 @@ echo Captcha::html('captcha_image.php', 'captcha', 'en');
 
 Generate the CSS styles for the CAPTCHA widget.
 
-` ` `php
+```php
 echo Captcha::styles();
-` ` `
+```
 
 ## 🎨 Custom Fonts
 
 1. Place your `.ttf` font file in the `fonts/` directory inside the package, or provide a full path.
 2. Set the font in config:
 
-` ` `php
+```php
 // Filename only (looks in package's fonts/ directory)
 'font' => 'MyCustomFont.ttf'
 
 // Or full path
 'font' => '/path/to/fonts/MyCustomFont.ttf'
-` ` `
+```
 
 If no font is configured or found, the package falls back to system fonts, and then to PHP's built-in bitmap font as a last resort.
 
@@ -279,17 +279,17 @@ If no font is configured or found, the package falls back to system fonts, and t
 
 ### Simple number-only CAPTCHA
 
-` ` `php
+```php
 Captcha::configure([
     'char_type'   => 'numbers',
     'length'      => 4,
     'noise_level' => 'low',
 ]);
-` ` `
+```
 
 ### High-security CAPTCHA
 
-` ` `php
+```php
 Captcha::configure([
     'char_type'      => 'mixed',
     'length'         => 7,
@@ -297,16 +297,16 @@ Captcha::configure([
     'case_sensitive' => true,
     'expiry'         => 120,
 ]);
-` ` `
+```
 
 ### English CAPTCHA
 
-` ` `php
+```php
 Captcha::configure(['lang' => 'en']);
 
 // Or override in html() only
 echo Captcha::html('captcha_image.php', 'captcha', 'en');
-` ` `
+```
 
 ---
 
@@ -341,9 +341,9 @@ echo Captcha::html('captcha_image.php', 'captcha', 'en');
 
 ## 📥 نصب
 
-` ` `bash
+```bash
 composer require aminarjmand/pure-captcha
-` ` `
+```
 
 ## 🚀 شروع سریع
 
@@ -351,17 +351,17 @@ composer require aminarjmand/pure-captcha
 
 فایلی به نام `captcha_image.php` بسازید:
 
-` ` `php
+```php
 <?php
 require 'vendor/autoload.php';
 use AminArjmand\PureCaptcha\Captcha;
 
 Captcha::renderImage();
-` ` `
+```
 
 ### مرحله ۲: اضافه کردن کپچا به فرم
 
-` ` `php
+```php
 <?php
 require 'vendor/autoload.php';
 use AminArjmand\PureCaptcha\Captcha;
@@ -386,13 +386,13 @@ use AminArjmand\PureCaptcha\Captcha;
     </form>
 </body>
 </html>
-` ` `
+```
 
 ### مرحله ۳: اعتبارسنجی کپچا
 
 فایل `submit.php` بسازید:
 
-` ` `php
+```php
 <?php
 require 'vendor/autoload.php';
 use AminArjmand\PureCaptcha\Captcha;
@@ -407,7 +407,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo '❌ کد امنیتی اشتباه است. لطفاً دوباره تلاش کنید.';
     }
 }
-` ` `
+```
 
 ## ⚙️ پیکربندی
 
@@ -415,7 +415,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 فایل `captcha_config.php` را در روت پروژه بسازید:
 
-` ` `php
+```php
 <?php
 return [
     'lang'           => 'fa',
@@ -429,18 +429,18 @@ return [
     'case_sensitive' => false,
     'noise_level'    => 'medium',
 ];
-` ` `
+```
 
 ### روش ۲: پیکربندی در زمان اجرا
 
-` ` `php
+```php
 Captcha::configure([
     'noise_level' => 'extreme',
     'length'      => 6,
     'lang'        => 'fa',
     'char_type'   => 'letters',
 ]);
-` ` `
+```
 
 > ⚠️ **توجه:** اگر از `configure()` استفاده می‌کنید، باید آن را هم در فایل فرم و هم در `captcha_image.php` فراخوانی کنید، زیرا هر درخواست HTTP مستقل است.
 
@@ -494,51 +494,51 @@ Captcha::configure([
 
 تنظیمات را در زمان اجرا تغییر می‌دهد.
 
-` ` `php
+```php
 Captcha::configure(['length' => 6, 'noise_level' => 'high']);
-` ` `
+```
 
 ### `Captcha::get(string $key, mixed $default = null): mixed`
 
 مقدار یک تنظیم را برمی‌گرداند.
 
-` ` `php
+```php
 $lang = Captcha::get('lang'); // 'fa'
-` ` `
+```
 
 ### `Captcha::generate(): string`
 
 یک کد کپچای جدید تولید و در سشن ذخیره می‌کند. کد تولیدشده را برمی‌گرداند.
 
-` ` `php
+```php
 $code = Captcha::generate();
-` ` `
+```
 
 ### `Captcha::validate(string $input): bool`
 
 ورودی کاربر را با کد ذخیره‌شده مقایسه می‌کند. در صورت صحت `true` برمی‌گرداند. کد ذخیره‌شده بعد از اعتبارسنجی حذف می‌شود (یکبار مصرف).
 
-` ` `php
+```php
 if (Captcha::validate($_POST['captcha'])) {
     // معتبر است!
 }
-` ` `
+```
 
 ### `Captcha::renderImage(): void`
 
 تصویر PNG کپچا را تولید و به خروجی ارسال می‌کند.
 
-` ` `php
+```php
 Captcha::renderImage();
-` ` `
+```
 
 ### `Captcha::html(string $imageUrl, string $inputName, ?string $lang): string`
 
 کد HTML ویجت کپچا را تولید می‌کند.
 
-` ` `php
+```php
 echo Captcha::html('captcha_image.php', 'captcha', 'fa');
-` ` `
+```
 
 | پارامتر | پیش‌فرض | توضیح |
 |----------|---------|--------|
@@ -550,22 +550,22 @@ echo Captcha::html('captcha_image.php', 'captcha', 'fa');
 
 استایل‌های CSS ویجت کپچا را تولید می‌کند.
 
-` ` `php
+```php
 echo Captcha::styles();
-` ` `
+```
 
 ## 🎨 فونت سفارشی
 
 1. فایل فونت `.ttf` خود را در پوشه `fonts/` داخل پکیج قرار دهید یا مسیر کامل را وارد کنید.
 2. فونت را در کانفیگ تنظیم کنید:
 
-` ` `php
+```php
 // فقط نام فایل (در پوشه fonts/ پکیج جستجو می‌شود)
 'font' => 'MyCustomFont.ttf'
 
 // یا مسیر کامل
 'font' => '/path/to/fonts/MyCustomFont.ttf'
-` ` `
+```
 
 اگر فونتی تنظیم نشده باشد، پکیج ابتدا فونت‌های سیستمی و سپس فونت داخلی PHP را استفاده می‌کند.
 
@@ -573,17 +573,17 @@ echo Captcha::styles();
 
 ### کپچای فقط عددی
 
-` ` `php
+```php
 Captcha::configure([
     'char_type'   => 'numbers',
     'length'      => 4,
     'noise_level' => 'low',
 ]);
-` ` `
+```
 
 ### کپچای امنیت بالا
 
-` ` `php
+```php
 Captcha::configure([
     'char_type'      => 'mixed',
     'length'         => 7,
@@ -591,22 +591,22 @@ Captcha::configure([
     'case_sensitive' => true,
     'expiry'         => 120,
 ]);
-` ` `
+```
 
 ### کپچای انگلیسی
 
-` ` `php
+```php
 Captcha::configure(['lang' => 'en']);
 
 // یا فقط در html() تغییر زبان
 echo Captcha::html('captcha_image.php', 'captcha', 'en');
-` ` `
+```
 
 ---
 
 ## 📁 Project Structure / ساختار پروژه
 
-` ` `
+```
 pure-captcha/
 ├── src/
 │   └── Captcha.php          # Main class / کلاس اصلی
@@ -617,7 +617,7 @@ pure-captcha/
 ├── composer.json
 ├── README.md
 └── LICENSE
-` ` `
+```
 
 ## 🤝 Contributing / مشارکت
 
