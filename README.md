@@ -346,13 +346,11 @@ echo Captcha::html('captcha_image.php', 'captcha', 'en');
 
 ## 📋 پیش‌نیازها
 
-<div dir="rtl" align="right">
 
 - PHP نسخه ۷.۴ به بالا
 - اکستنشن GD
 - اکستنشن Session
 
-</div>
 
 ## 📥 نصب
 
