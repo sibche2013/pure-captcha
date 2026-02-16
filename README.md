@@ -125,7 +125,7 @@ Create `captcha_config.php` in your project root:
 <?php
 return [
     'lang'           => 'en',
-    'font'           => 'arial.ttf',
+    'font'           => 'Vazirmatn.ttf',
     'expiry'         => 300,
     'length'         => 5,
     'width'          => 170,
@@ -432,7 +432,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php
 return [
     'lang'           => 'fa',
-    'font'           => 'arial.ttf',
+    'font'           => 'Vazirmatn.ttf',
     'expiry'         => 300,
     'length'         => 5,
     'width'          => 170,
