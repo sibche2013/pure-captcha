@@ -166,23 +166,24 @@ Captcha::configure([
 | `noise_level` | string | `'medium'` | Difficulty level (see below) |
 
 ### Character Sets
-
+        
 | Type | Characters |
 |------|------------|
-| `mixed` | `ABCDEFGHJKLMNPRSTUVWXYZ23456789~!@#$%^&*()_+` |
-| `letters` | `ABCDEFGHJKLMNPRSTUVWXYZ` |
-| `numbers` | `23456789` |
+| `mixed` | `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()-+` |
+| `lettersB` | `ABCDEFGHJKLMNPRSTUVWXYZ` |
+| `lettersS` | `abcdefghijklmnopqrstuvwxyz` |
+| `numbers` | `0123456789` |
 | `characters` | `~!@#$%^&*()-+` |
 
 ## 🎯 Difficulty Levels
-
+        
 | Level | Dots | Arcs | Lines | Rotation | Grid | Ghosts | Wave | Difficulty |
 |-------|------|------|-------|----------|------|--------|------|------------|
-| `low` | 40 | 1 | 1 | ±15° | ❌ | ❌ | ❌ | ⭐ |
-| `medium` | 80 | 3 | 2 | ±20° | ❌ | ❌ | ❌ | ⭐⭐ |
-| `high` | 140 | 5 | 4 | ±25° | ✅ | ❌ | ❌ | ⭐⭐⭐ |
-| `extreme` | 300 | 10 | 8 | ±35° | ✅ | ✅ (4) | ❌ | ⭐⭐⭐⭐ |
-| `nightmare` | 200 | 8 | 6 | ±30° | ✅ | ✅ (4) | ✅ | ⭐⭐⭐⭐⭐ |
+| `low` | 1000 | 10 | 1 | ±15° | ❌ | ✅ (2) | ❌ | ⭐ |
+| `medium` | 2000 | 20 | 2 | ±20° | ❌ | ✅ (4) | ❌ | ⭐⭐ |
+| `high` | 3000 | 30 | 4 | ±25° | ✅ | ✅ (6) | ❌ | ⭐⭐⭐ |
+| `extreme` | 4000 | 40 | 6 | ±35° | ✅ | ✅ (8) | ❌ | ⭐⭐⭐⭐ |
+| `nightmare` | 5000 | 50 | 8 | ±40° | ✅ | ✅ (10) | ✅ | ⭐⭐⭐⭐⭐ |
 
 ### What each feature does:
 
@@ -476,20 +477,22 @@ Captcha::configure([
 
 | نوع | کاراکترها |
 |------|-----------|
-| `mixed` | `ABCDEFGHJKLMNPRSTUVWXYZ23456789~!@#$%^&*()_+` |
-| `letters` | `ABCDEFGHJKLMNPRSTUVWXYZ` |
-| `numbers` | `23456789` |
+| `mixed` | `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()-+` |
+| `lettersB` | `ABCDEFGHJKLMNPRSTUVWXYZ` |
+| `lettersS` | `abcdefghijklmnopqrstuvwxyz` |
+| `numbers` | `0123456789` |
 | `characters` | `~!@#$%^&*()-+` |
 
 ## 🎯 سطوح سختی
 
 | سطح | نقاط | کمان | خطوط | چرخش | شبکه | شبح | موج | سختی |
 |------|------|------|-------|--------|-------|------|------|--------|
-| `low` | ۴۰ | ۱ | ۱ | ±۱۵° | ❌ | ❌ | ❌ | ⭐ |
-| `medium` | ۸۰ | ۳ | ۲ | ±۲۰° | ❌ | ❌ | ❌ | ⭐⭐ |
-| `high` | ۱۴۰ | ۵ | ۴ | ±۲۵° | ✅ | ❌ | ❌ | ⭐⭐⭐ |
-| `extreme` | ۳۰۰ | ۱۰ | ۸ | ±۳۵° | ✅ | ✅ | ❌ | ⭐⭐⭐⭐ |
-| `nightmare` | ۲۰۰ | ۸ | ۶ | ±۳۰° | ✅ | ✅ | ✅ | ⭐⭐⭐⭐⭐ |
+| `low` | ۱۰۰۰ | ۱۰ | ۱ | ±۱۵° | ❌ | ✅ (۲) | ❌ | ⭐ |
+| `medium` | ۲۰۰۰ | ۲۰ | ۲ | ±۲۰° | ❌ | ✅ (۴) | ❌ | ⭐⭐ |
+| `high` | ۳۰۰۰ | ۳۰ | ۴ | ±۲۵° | ✅ | ❌ | ✅ (۶) | ⭐⭐⭐ |
+| `extreme` | ۴۰۰۰ | ۴۰ | ۶ | ±۳۵° | ✅ | ✅ (۸) | ❌ | ⭐⭐⭐⭐ |
+| `nightmare` | ۵۰۰۰ | ۵۰ | ۸ | ±۴۰° | ✅ | ✅ (۱۰) | ✅ | ⭐⭐⭐⭐⭐ |
+
 
 ### هر ویژگی چه کاری انجام می‌دهد:
 
