@@ -8,20 +8,20 @@ class Captcha
     private static bool  $loaded = false;
 
     /* ─── ثابت‌ها ─── */
-
     private const CHAR_SETS = [
-        'mixed'      => 'ABCDEFGHJKLMNPRSTUVWXYZ23456789~!@#$%^&*()_+',
-        'letters'    => 'ABCDEFGHJKLMNPRSTUVWXYZ',
-        'numbers'    => '23456789',
+        'mixed'      => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()-+',
+        'lettersB'    => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        'lettersS'    => 'abcdefghijklmnopqrstuvwxyz',
+        'numbers'    => '0123456789',
         'characters' => '~!@#$%^&*()-+',
     ];
 
     private const NOISE = [
-        'low'       => ['dots' => 40,  'arcs' => 1,  'lines' => 1, 'angle' => 15, 'grid' => false, 'wave' => false, 'ghosts' => 0],
-        'medium'    => ['dots' => 80,  'arcs' => 3,  'lines' => 2, 'angle' => 20, 'grid' => false, 'wave' => false, 'ghosts' => 0],
-        'high'      => ['dots' => 140, 'arcs' => 5,  'lines' => 4, 'angle' => 25, 'grid' => true,  'wave' => false, 'ghosts' => 0],
-        'extreme'   => ['dots' => 300, 'arcs' => 10, 'lines' => 8, 'angle' => 35, 'grid' => true,  'wave' => false, 'ghosts' => 4],
-        'nightmare' => ['dots' => 200, 'arcs' => 8,  'lines' => 6, 'angle' => 30, 'grid' => true,  'wave' => true,  'ghosts' => 4],
+        'low'       => ['dots' => 1000, 'arcs' => 10,  'lines' => 1, 'angle' => 15, 'grid' => false, 'wave' => false, 'ghosts' => 2],
+        'medium'    => ['dots' => 2000, 'arcs' => 20,  'lines' => 2, 'angle' => 20, 'grid' => false, 'wave' => false, 'ghosts' => 4],
+        'high'      => ['dots' => 3000, 'arcs' => 30,  'lines' => 4, 'angle' => 25, 'grid' => true,  'wave' => false, 'ghosts' => 6],
+        'extreme'   => ['dots' => 4000, 'arcs' => 40,  'lines' => 6, 'angle' => 35, 'grid' => true,  'wave' => false, 'ghosts' => 8],
+        'nightmare' => ['dots' => 5000, 'arcs' => 50,  'lines' => 8, 'angle' => 40, 'grid' => true,  'wave' => true,  'ghosts' => 10],
     ];
 
     private const LABELS = [
