@@ -1,0 +1,4 @@
+{
+  "emoji": "🔒",
+  "description": "Pure Captcha: A secure, lightweight, and dependency-free PHP CAPTCHA package utilizing native GD extensions with advanced distortion mechanics, custom noise controllers, and seamless bilingual (Persian/English) widget assets."
+}
