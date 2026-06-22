@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Captcha - Documentation</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/vazirmatn-font-face.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+    <style>
+        /* Developed by Amin Arjmand | aminarjmand.com */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --card-border: rgba(255, 255, 255, 0.45);
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+            --accent-color: #3498db;
+            --accent-hover: #2980b9;
+            --code-bg: rgba(0, 0, 0, 0.04);
+            --code-text: #e74c3c;
+            --shadow: rgba(31, 38, 135, 0.05);
+            --table-header: rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+            --card-bg: rgba(31, 41, 55, 0.75);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent-color: #60a5fa;
+            --accent-hover: #3b82f6;
+            --code-bg: rgba(255, 255, 255, 0.05);
+            --code-text: #f87171;
+            --shadow: rgba(0, 0, 0, 0.25);
+            --table-header: rgba(255, 255, 255, 0.02);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        body {
+            font-family: 'Vazirmatn', 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        body.en {
+            font-family: 'Inter', 'Vazirmatn', sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Toolbar Controls */
+        .toolbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .btn-control {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        .btn-control:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+
+        /* Documentation Card */
+        .doc-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px var(--shadow);
+        }
+
+        /* Badges */
+        .badge-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0 35px 0;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+        }
+
+        .badge-php { background: #8892BF; }
+        .badge-license { background: #2ecc71; }
+        .badge-packagist { background: #f28d1a; }
+
+        /* Typography */
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        h2 {
+            font-size: 1.45rem;
+            margin: 40px 0 20px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--card-border);
+            color: var(--accent-color);
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            margin: 25px 0 12px 0;
+            color: var(--text-main);
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin: 15px 25px;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Code Styler */
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 18px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 15px 0;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .code-comment { color: #5c6370; font-style: italic; }
+        .code-keyword { color: #c678dd; }
+        .code-string { color: #98c379; }
+
+        /* Tables Customizer */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        body.en table {
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        th {
+            background: var(--table-header);
+            font-weight: 700;
+        }
+
+        /* Language Toggle Hooks */
+        .lang-en { display: none; }
+        body.en .lang-fa { display: none; }
+        body.en .lang-en { display: block; }
+
+        @media (max-width: 600px) {
+            .doc-card { padding: 25px; }
+            h1 { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="toolbar">
+        <button class="btn-control" id="btn-lang" onclick="toggleLanguage()">
+            🌐 <span>English</span>
+        </button>
+        <button class="btn-control" id="btn-theme" onclick="toggleTheme()">
+            🌙 <span class="lang-fa">حالت تاریک</span><span class="lang-en">Dark Mode</span>
+        </button>
+    </div>
+
+    <div class="doc-card">
+        
+        <div class="lang-fa">
+            <h1>🔒 Pure Captcha</h1>
+            <p style="text-align: center; margin-top: 10px; color: var(--text-muted)">یک پکیج کپچای امن، قابل تنظیم و بسیار سبک برای PHP بدون وابستگی خارجی</p>
+        </div>
+        
+        <div class="lang-en">
+            <h1>🔒 Pure Captcha</h1>
+            <p style="text-align: center; margin-top: 10px; color: var(--text-muted)">A secure, customizable and lightweight PHP CAPTCHA package</p>
+        </div>
+
+        <div class="badge-wrapper">
+            <span class="badge badge-php">PHP >= 7.4</span>
+            <span class="badge badge-license">MIT License</span>
+            <span class="badge badge-packagist">Packagist Verified</span>
+        </div>
+
+        <div class="lang-fa">
+            <h2>📖 درباره پروژه</h2>
+            <p>پکیج <strong>Pure Captcha</strong> یک راهکار کاملاً مستقل و سبک برای تولید تصاویر کپچای امن در PHP است. این پکیج منحصراً از اکستنشن داخلی GD در PHP استفاده می‌کند و به هیچ سرویس خارجی، کدهای سنگین جاوااسکریپت یا کلیدهای API نیاز ندارد.</p>
+
+            <h2>✨ امکانات اصلی پکیج</h2>
+            <ul>
+                <li>🎨 <strong>رابط کاربری زیبا:</strong> طراحی مدرن با استفاده از پس‌زمینه‌های گرادیانت شیک و افکت سایه.</li>
+                <li>🔧 <strong>کاملاً قابل تنظیم:</strong> امکان تغییر تعداد کاراکتر، ابعاد کادر، فونت‌ها، رنگ‌ها و میزان نویز محیطی.</li>
+                <li>🛡️ <strong>۵ سطح سختی هوشمند:</strong> تنظیم سختی ساختار تصویر از سطح معمولی <code>low</code> تا سطح فوق پیشرفته <code>nightmare</code>.</li>
+                <li>👻 <strong>کاراکترهای شبح (Ghost):</strong> تولید حروف کمرنگ و جعلی در پس‌زمینه برای مسدودسازی کامپایلر ربات‌ها.</li>
+                <li>🌊 <strong>اعوجاج موجی شکل:</strong> تاب دادن به شکل کاراکترها به صورت سینوسی برای شکست دادن انواع الگوریتم‌های هوش مصنوعی تصویرخوان (OCR).</li>
+                <li>🌐 <strong>پشتیبانی از چندزبانه:</strong> بومی‌سازی ساختاری یکپارچه برای زبان‌های فارسی (fa) و انگلیسی (en).</li>
+                <li>🔄 <strong>بارگذاری مجدد (Refresh):</strong> دکمه تعویض آنی بر پایه فرآیندهای AJAX به همراه انیمیشن چرخشی مدرن.</li>
+            </ul>
+
+            <h2>📥 روش نصب</h2>
+            <p>نصب آسان پکیج با استفاده از مدیریت وابستگی Composer:</p>
+            <div class="code-block">
+                composer require aminarjmand/pure-captcha
+            </div>
+
+            <h2>🚀 شروع سریع در ۳ مرحله</h2>
+            <h3>مرحله ۱: ساخت فایل رندر تصویر</h3>
+            <p>فایلی به نام <code>captcha_image.php</code> بسازید:</p>
+            <div class="code-block">
+                <span class="code-keyword">&lt;?php</span><br>
+                <span class="code-keyword">require</span> <span class="code-string">'vendor/autoload.php'</span>;<br>
+                <span class="code-keyword">use</span> AminArjmand\PureCaptcha\Captcha;<br><br>
+                Captcha::<span class="code-keyword">renderImage</span>();
+            </div>
+
+            <h3>مرحله ۲: قرار دادن کدهای کپچا در فرم</h3>
+            <div class="code-block">
+                <span class="code-comment">&lt;!-- تزریق کدهای HTML در فرم ورودی اطلاعات --&gt;</span><br>
+                <span class="code-keyword">&lt;form</span> <span class="code-string">method="POST" action="submit.php"</span><span class="code-keyword">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">&lt;input</span> <span class="code-string">type="text" name="name" placeholder="نام شما"</span><span class="code-keyword">&gt;</span><br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">&lt;!-- نمایش ویجت کپچا --&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">&lt;?php</span> <span class="code-keyword">echo</span> Captcha::<span class="code-keyword">html</span>(); <span class="code-keyword">?&gt;</span><br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">&lt;button</span> <span class="code-string">type="submit"</span><span class="code-keyword">&gt;</span>ارسال<span class="code-keyword">&lt;/button&gt;</span><br>
+                <span class="code-keyword">&lt;/form&gt;</span>
+            </div>
+
+            <h3>مرحله ۳: بررسی و اعتبارسنجی</h3>
+            <p>در فایل <code>submit.php</code> کد وارد شده را بررسی کنید:</p>
+            <div class="code-block">
+                <span class="code-keyword">if</span> (Captcha::<span class="code-keyword">validate</span>(<span class="code-keyword">$_POST</span>[<span class="code-string">'captcha'</span>])) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">echo</span> <span class="code-string">"✅ کد امنیتی صحیح است!"</span>;<br>
+                } <span class="code-keyword">else</span> {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">echo</span> <span class="code-string">"❌ کد امنیتی اشتباه است."</span>;<br>
+                }
+            </div>
+
+            <h2>⚙️ جدول راهنمای تنظیمات پکیج</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>تنظیم</th>
+                            <th>نوع داده</th>
+                            <th>پیش‌فرض</th>
+                            <th>توضیحات عملکرد</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>lang</code></td><td>string</td><td><code>'fa'</code></td><td>زبان نمایش سیستم (<code>'fa'</code> یا <code>'en'</code>)</td></tr>
+                        <tr><td><code>expiry</code></td><td>int</td><td><code>300</code></td><td>مدت زمان انقضای کپچا بر حسب ثانیه</td></tr>
+                        <tr><td><code>length</code></td><td>int</td><td><code>5</code></td><td>تعداد کاراکترهای نمایش داده شده در تصویر</td></tr>
+                        <tr><td><code>width</code></td><td>int</td><td><code>170</code></td><td>عرض کادر خروجی تصویر به پیکسل</td></tr>
+                        <tr><td><code>height</code></td><td>int</td><td><code>55</code></td><td>ارتفاع کادر خروجی تصویر به پیکسل</td></tr>
+                        <tr><td><code>noise_level</code></td><td>string</td><td><code>'medium'</code></td><td>درجه سختی نویزهای اعمال شده روی تصویر</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="lang-en">
+            <h2>📖 About Pure Captcha</h2>
+            <p><strong>Pure Captcha</strong> is a pure, standalone PHP package that focuses on generating highly secure visual tokens without any mandatory external third-party dependencies. Powered strictly by PHP's local GD library extensions.</p>
+
+            <h2>✨ Feature Highlights</h2>
+            <ul>
+                <li>🎨 <strong>Polished Presentation UI:</strong> Modern form component aesthetics carrying smooth color gradients and subtle box styling shadows.</li>
+                <li>🔧 <strong>Deep Parameter Customization:</strong> Total runtime modifications for custom string length, dimensional parameters, font matrices, and ambient noises.</li>
+                <li>🛡️ <strong>5 Difficulty Environments:</strong> Scale security layers smoothly ranging from lightweight <code>low</code> up to maximum brute-force protection <code>nightmare</code>.</li>
+                <li>👻 <strong>Ghost Character Modules:</strong> Overlays randomized semi-transparent decoy text layers onto canvas planes to effectively blind scanner bots.</li>
+                <li>Wave distortion grids, zero third-party JavaScript tracking, full PSR-4 compatibility.</li>
+            </ul>
+
+            <h2>📥 Installation</h2>
+            <p>Incorporate the package instantly inside any modern web framework via Composer:</p>
+            <div class="code-block">
+                composer require aminarjmand/pure-captcha
+            </div>
+
+            <h2>🚀 Fast Setups</h2>
+            <h3>1. Target Endpoint Wrapper</h3>
+            <p>Create an independent rendering instance named <code>captcha_image.php</code>:</p>
+            <div class="code-block">
+                <span class="code-keyword">&lt;?php</span><br>
+                <span class="code-keyword">require</span> <span class="code-string">'vendor/autoload.php'</span>;<br>
+                Captcha::<span class="code-keyword">renderImage</span>();
+            </div>
+
+            <h3>2. Inject Form Framework Markup</h3>
+            <div class="code-block">
+                <span class="code-keyword">&lt;form</span> <span class="code-string">method="POST" action="submit.php"</span><span class="code-keyword">&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">&lt;?php</span> <span class="code-keyword">echo</span> Captcha::<span class="code-keyword">html</span>(); <span class="code-keyword">?&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">&lt;button</span> <span class="code-string">type="submit"</span><span class="code-keyword">&gt;</span>Submit<span class="code-keyword">&lt;/button&gt;</span><br>
+                <span class="code-keyword">&lt;/form&gt;</span>
+            </div>
+
+            <h2>⚙️ Core Configurations Option</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>lang</code></td><td>string</td><td><code>'fa'</code></td><td>Target widget language localization (<code>'fa' / 'en'</code>)</td></tr>
+                        <tr><td><code>expiry</code></td><td>int</td><td><code>300</code></td><td>Token lifespan threshold limits inside seconds</td></tr>
+                        <tr><td><code>length</code></td><td>int</td><td><code>5</code></td><td>Total randomized character count strings</td></tr>
+                        <tr><td><code>noise_level</code></td><td>string</td><td><code>'medium'</code></td><td>Complexity configuration environment setups</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; text-align: center; border-top: 1px solid var(--card-border); padding-top: 20px;">
+            <p style="font-size: 0.9rem; color: var(--text-muted); text-align: center;">
+                Maintained with 💙 by <a href="https://aminarjmand.com" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">Amin Arjmand</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // 1. Theme Toggle Framework
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        
+        const btnTextFa = targetTheme === 'dark' ? 'حالت روشن' : 'حالت تاریک';
+        const btnTextEn = targetTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+        
+        document.getElementById('btn-theme').innerHTML = `☀️ <span class="lang-fa">${btnTextFa}</span><span class="lang-en">${btnTextEn}</span>`;
+    }
+
+    // 2. Bilingual Matrix Switcher
+    function toggleLanguage() {
+        const isEnglish = document.body.classList.toggle('en');
+        if (isEnglish) {
+            document.documentElement.setAttribute('lang', 'en');
+            document.documentElement.setAttribute('dir', 'ltr');
+            document.getElementById('btn-lang').innerHTML = `🌐 <span>فارسی</span>`;
+        } else {
+            document.documentElement.setAttribute('lang', 'fa');
+            document.documentElement.setAttribute('dir', 'rtl');
+            document.getElementById('btn-lang').innerHTML = `🌐 <span>English</span>`;
+        }
+    }
+</script>
+</body>
+</html>
